@@ -43,9 +43,9 @@ func (s *Seq) Next() int64 {
 		(t&0xFF00)<<32 |
 		(t&0xFF)<<32 |
 		(w&0x3FC)<<22 |
-		((w & 0x3) << 22) | (v & 0x3F0000) |
-		(v & 0xFF00) |
-		(v & 0xFF)
+		(w&0x3)<<22 | v&0x3F0000 |
+		v&0xFF00 |
+		v&0xFF
 }
 
 // NextHex returns an 8-byte hexadecimal string representation of the Seq.
