@@ -1,6 +1,6 @@
 # Seq
 
-A globally, 64 bits, thread-safe identifier for Go.
+A globally, 64 bits, thread-safe identifier for Go. It can generate `4,194,303` numbers per second.
 
 ## Introduction
 
@@ -30,6 +30,7 @@ v := seq.Next()
 ### Random Seq
 
 Create a new Seq with a random worker identifier.
+
 ```go
 seq := RandomSeq()
 v := seq.Next()

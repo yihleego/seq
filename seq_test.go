@@ -9,13 +9,13 @@ import (
 func TestNewSeq(t *testing.T) {
 	seq := NewSeq(64)
 	v := seq.Next()
-	t.Logf("v: %d, b: %s", v, ToBinary(v))
+	t.Logf("value: %d, type: %T, binary: %s", v, v, ToBinary(v))
 }
 
 func TestRandomSeq(t *testing.T) {
 	seq := RandomSeq()
 	v := seq.Next()
-	t.Logf("v: %d, b: %s", v, ToBinary(v))
+	t.Logf("value: %d, type: %T, binary: %s", v, v, ToBinary(v))
 }
 
 func TestConcurrency(t *testing.T) {
@@ -44,7 +44,7 @@ func TestConcurrency(t *testing.T) {
 		}
 	}
 	if len(m) != num*num {
-		t.Error("Conflict")
+		t.Error("Conflict", len(m))
 	} else {
 		t.Log("OK")
 	}

@@ -19,7 +19,7 @@ const (
 // Adder with initial random number.
 var adder = rand.Int31n(MaxSequence)
 
-// A Seq is a globally, 64 bits, thread-safe identifier.
+// A Seq is a globally, 64 bits, thread-safe identifier. It can generate 4,194,303 numbers per second.
 //	┌--------┬--------┬--------┬--------┬--------┬--------┬--------┬--------┐
 //	|11111111|11111111|11111111|11111111|11111111|11111111|11111111|11111111| FORMAT: 64 bits
 //	├--------┼--------┼--------┼--------┼--------┼--------┼--------┼--------┤
@@ -38,14 +38,7 @@ func (s *Seq) Next() int64 {
 	t := time.Now().Unix() - Offset
 	w := int64(s.workerId)
 	v := int64(atomic.AddInt32(&adder, 1) & MaxSequence)
-	return (t&0xFF000000)<<32 |
-		(t&0xFF0000)<<32 |
-		(t&0xFF00)<<32 |
-		(t&0xFF)<<32 |
-		(w&0x3FC)<<22 |
-		(w&0x3)<<22 | v&0x3F0000 |
-		v&0xFF00 |
-		v&0xFF
+	return t&0xFFFFFFFF<<32 | w&0x3FF<<22 | v&0x3FFFFF
 }
 
 // NextHex returns an 8-byte hexadecimal string representation of the Seq.
