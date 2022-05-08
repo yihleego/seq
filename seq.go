@@ -38,7 +38,7 @@ func (s *Seq) Next() int64 {
 	t := time.Now().Unix() - Offset
 	w := int64(s.workerId)
 	v := int64(atomic.AddInt32(&adder, 1) & MaxSequence)
-	return t&0xFFFFFFFF<<32 | w&0x3FF<<22 | v&0x3FFFFF
+	return t<<32 | w&0x3FF<<22 | v&0x3FFFFF
 }
 
 // NextHex returns an 8-byte hexadecimal string representation of the Seq.
