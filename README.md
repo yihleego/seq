@@ -38,4 +38,4 @@ v := seq.Next()
 
 ## License
 
-This project is under the Apache 2.0 license. See the [LICENSE](LICENSE) file for details.
+This project is under the MIT license. See the [LICENSE](LICENSE) file for details.
